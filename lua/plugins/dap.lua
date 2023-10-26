@@ -39,16 +39,29 @@ return {
       dap_python.setup(get_python_path())
     end,
     keys = {
-      { "<leader>tm", "<cmd>lua require('dap-python').test_method()<cr>", desc = "Dap test method" },
-      { "<leader>tc", "<cmd>lua require('dap-python').test_class()<cr>", desc = "Dap test class" },
+      { "<leader>tm", "<cmd>lua require('dap-python').test_method()<cr>", desc = "Dap test method(python)" },
+      { "<leader>tc", "<cmd>lua require('dap-python').test_class()<cr>", desc = "Dap test class(python)" },
     },
-    -- init = function()
-    --   local keymap = vim.api.nvim_set_keymap
-    --   local opts = { noremap = true, silent = true }
-    --   keymap("n", "<leader>tm", "<cmd>lua require('dap-python').test_method()<cr>", opts)
-    --   keymap("n", "<leader>tc", "<cmd>lua require('dap-python').test_class()<cr>", opts)
-    --   keymap("v", "<leader>ts", ":lua require('dap-python').debug_selection()<cr>", opts)
-    -- end,
+  },
+  {
+    "leoluz/nvim-dap-go",
+    opts = {
+      dap_configurations = {
+        {
+          type = "go",
+          name = "Attach remote",
+          mode = "remote",
+          request = "attach",
+        },
+      },
+      delve = {
+        path = "dlv",
+        initialize_timeout_sec = 20,
+        port = "${port}",
+        args = {},
+        build_flags = "",
+      },
+    },
   },
   {
     "rcarriga/nvim-dap-ui",

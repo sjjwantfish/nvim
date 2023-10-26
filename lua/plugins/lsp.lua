@@ -11,8 +11,8 @@ return {
         "shellcheck",
         "shfmt",
         "bash-language-server",
-        -- golang
-        "gopls",
+        -- -- golang ==> go.nvim
+        -- "gopls",
         -- python
         "pyright",
         "flake8",
@@ -88,7 +88,7 @@ return {
           --   },
           -- },
         },
-        gopls = {},
+        -- gopls = {},
       },
     },
     init = function()
@@ -212,6 +212,39 @@ return {
         icons = { breakpoint = "B", currentpos = "->" },
         run_in_floaterm = true,
         luasnip = true,
+        -- goimport = "goimport",
+        gofmt = "gofumpt",
+        lsp_gofumpt = true,
+        diagnostic = {
+          underline = false,
+          virtual_text = { space = 0, prefix = "■" },
+          signs = true,
+          update_in_insert = false,
+        },
+        lsp_cfg = true,
+        lsp_codelens = true,
+        lsp_inlay_hints = {
+          enable = true,
+          only_current_line = false,
+          only_current_line_autocmd = "CursorHold",
+          show_variable_name = true,
+          parameter_hints_prefix = "󰊕 ",
+          show_parameter_hints = true,
+          -- prefix for all the other hints (type, chaining)
+          other_hints_prefix = "=> ",
+          -- whether to align to the lenght of the longest line in the file
+          max_len_align = false,
+          -- padding from the left if max_len_align is true
+          max_len_align_padding = 1,
+          -- whether to align to the extreme right or not
+          right_align = false,
+          -- The color of the hints
+          highlight = "Comment",
+        },
+        dap_debug = true,
+        dap_debug_gui = true,
+        textobjects = true,
+        test_runner = "dlv",
       })
     end,
     event = { "CmdlineEnter" },

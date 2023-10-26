@@ -7,6 +7,7 @@ return {
     events = { "BufWritePost", "BufReadPost", "InsertLeave" },
     linters_by_ft = {
       python = { "pylint" },
+      go = { "golangcilint" },
     },
     linters = {
       pylint = {

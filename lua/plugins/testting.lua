@@ -19,7 +19,7 @@ return {
     end,
 
     keys = {
-      { "<leader>tR", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Test run" },
+      { "<leader>tR", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Test run(dap)" },
       { "<leader>tr", "<cmd>lua require('neotest').run.run()<cr>", desc = "Test run" },
       { "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand(' % '))<cr>", desc = "Test file" },
       { "<leader>tp", "<cmd>lua require('neotest').output.open({ enter = true })<cr>", desc = "Test toggle panel" },
