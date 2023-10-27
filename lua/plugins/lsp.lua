@@ -241,6 +241,7 @@ return {
           -- The color of the hints
           highlight = "Comment",
         },
+        lsp_keymaps = false,
         dap_debug = true,
         dap_debug_gui = true,
         textobjects = true,
