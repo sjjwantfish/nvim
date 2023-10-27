@@ -75,6 +75,11 @@ return {
       telescope.load_extension("harpoon")
       telescope.load_extension("encodings")
       -- telescope.load_extension("aerial")
+      require("telescope-all-recent").setup({
+        default = {
+          sorting = "frecency",
+        },
+      })
     end,
     keys = {
       {
@@ -245,4 +250,5 @@ return {
       },
     },
   },
+  { "prochri/telescope-all-recent.nvim", dependencies = { "nvim-telescope/telescope.nvim", "kkharji/sqlite.lua" } },
 }
