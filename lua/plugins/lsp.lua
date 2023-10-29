@@ -91,6 +91,17 @@ return {
         -- gopls = {},
       },
     },
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "K", "<cmd>Lspsaga hover_doc<cr>" }
+      keys[#keys + 1] = { "gh", "<cmd>Lspsaga finder<cr>" }
+      keys[#keys + 1] = { "gd", "<cmd>Lspsaga goto_definition<cr>" }
+      keys[#keys + 1] = { "<leader>ca", "<cmd>Lspsaga code_action<cr>" }
+      keys[#keys + 1] = { "gj", "<cmd>Lspsaga outgoing_calls<cr>" }
+      keys[#keys + 1] = { "gk", "<cmd>Lspsaga incoming_calls<cr>" }
+      keys[#keys + 1] = { "<leader>cS", "<cmd>Lspsaga outline<cr>" }
+      keys[#keys + 1] = { "<leader>cR", "<cmd>LspRestart<cr>" }
+    end,
   },
   {
     "glepnir/lspsaga.nvim",
@@ -148,16 +159,6 @@ return {
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
       { "nvim-treesitter/nvim-treesitter" },
-    },
-    keys = {
-      { "K", mode = { "n" }, "<cmd>Lspsaga hover_doc<cr>", desc = "Hover doc" },
-      { "gh", mode = { "n" }, "<cmd>Lspsaga finder<cr>", desc = "Lsp finder" },
-      { "gd", mode = { "n" }, "<cmd>Lspsaga goto_definition<cr>", desc = "Lsp go to definition" },
-      { "<leader>ca", mode = { "n" }, "<cmd>Lspsaga code_action<cr>", desc = "Lsp code action" },
-      { "gj", mode = { "n" }, "<cmd>Lspsaga outgoing_calls<cr>", desc = "Lsp outgoing calls" },
-      { "gk", mode = { "n" }, "<cmd>Lspsaga incoming_calls<cr>", desc = "Lsp incoming calls" },
-      { "<leader>ch", mode = { "n" }, "<cmd>Lspsaga outline<cr>", desc = "Lsp outline" },
-      { "<leader>cR", mode = { "n" }, "<cmd>LspRestart<cr>", desc = "Lsp restart" },
     },
   },
   {
