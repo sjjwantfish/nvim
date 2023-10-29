@@ -99,7 +99,7 @@ return {
       keys[#keys + 1] = { "<leader>ca", "<cmd>Lspsaga code_action<cr>" }
       keys[#keys + 1] = { "gj", "<cmd>Lspsaga outgoing_calls<cr>" }
       keys[#keys + 1] = { "gk", "<cmd>Lspsaga incoming_calls<cr>" }
-      keys[#keys + 1] = { "<leader>cS", "<cmd>Lspsaga outline<cr>" }
+      keys[#keys + 1] = { "<leader>ch", "<cmd>Lspsaga outline<cr>" }
       keys[#keys + 1] = { "<leader>cR", "<cmd>LspRestart<cr>" }
     end,
   },
