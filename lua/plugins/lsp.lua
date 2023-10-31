@@ -93,14 +93,14 @@ return {
     },
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "K", "<cmd>Lspsaga hover_doc<cr>" }
-      keys[#keys + 1] = { "gh", "<cmd>Lspsaga finder<cr>" }
-      keys[#keys + 1] = { "gd", "<cmd>Lspsaga goto_definition<cr>" }
-      keys[#keys + 1] = { "<leader>ca", "<cmd>Lspsaga code_action<cr>" }
-      keys[#keys + 1] = { "gj", "<cmd>Lspsaga outgoing_calls<cr>" }
-      keys[#keys + 1] = { "gk", "<cmd>Lspsaga incoming_calls<cr>" }
-      keys[#keys + 1] = { "<leader>ch", "<cmd>Lspsaga outline<cr>" }
-      keys[#keys + 1] = { "<leader>cR", "<cmd>LspRestart<cr>" }
+      keys[#keys + 1] = { "K", mode = { "n" }, "<cmd>Lspsaga hover_doc<cr>" }
+      keys[#keys + 1] = { "gh", mode = { "n" }, "<cmd>Lspsaga finder<cr>" }
+      keys[#keys + 1] = { "gd", mode = { "n" }, "<cmd>Lspsaga goto_definition<cr>" }
+      keys[#keys + 1] = { "<leader>ca", mode = { "n", "v", "x" }, "<cmd>Lspsaga code_action<cr>" }
+      keys[#keys + 1] = { "gj", mode = { "n" }, "<cmd>Lspsaga outgoing_calls<cr>" }
+      keys[#keys + 1] = { "gk", mode = { "n" }, "<cmd>Lspsaga incoming_calls<cr>" }
+      keys[#keys + 1] = { "<leader>ch", mode = { "n" }, "<cmd>Lspsaga outline<cr>" }
+      keys[#keys + 1] = { "<leader>cR", mode = { "n" }, "<cmd>LspRestart<cr>" }
     end,
   },
   {
@@ -252,6 +252,16 @@ return {
         textobjects = true,
         test_runner = "dlv",
       })
+
+      local opts = { noremap = true, silent = true }
+
+      -- local term_opts = { silent = true }
+
+      -- Shorten function name
+      local keymap = vim.api.nvim_set_keymap
+
+      keymap("n", "<leader>cd", "<cmd>lua lrequire('go.codeaction').run_code_action()<cr>", opts)
+      keymap("x", "<leader>cd", "<cmd>lua require('go.codeaction').run_range_code_action()<cr>", opts)
     end,
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
