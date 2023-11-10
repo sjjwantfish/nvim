@@ -14,8 +14,6 @@ local function get_visual()
   return vim.api.nvim_buf_get_text(0, ls - 1, cs - 1, le - 1, ce, {})
 end
 
-local resolver = require("telescope.config.resolve")
-
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -146,9 +144,6 @@ return {
     },
     opts = {
       pickers = {
-        -- git_files = {
-        --   theme = "ivy",
-        -- },
         find_files = {
           find_command = { "rg", "--files", "--hidden", "-g", "!.git", "-g", "!devTools", "-g", "!vendor" },
         },
