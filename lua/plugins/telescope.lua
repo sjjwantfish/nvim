@@ -14,6 +14,8 @@ local function get_visual()
   return vim.api.nvim_buf_get_text(0, ls - 1, cs - 1, le - 1, ce, {})
 end
 
+local resolver = require("telescope.config.resolve")
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -35,7 +37,6 @@ return {
       opts.extensions = {
         undo = {},
         live_grep_args = {
-          theme = "ivy",
           auto_quoting = true,
           mappings = {
             i = {
@@ -65,6 +66,14 @@ return {
         },
         heading = { treesitter = true },
       }
+
+      if vim.api.nvim_win_get_width(0) > 120 then
+        opts.defaults.layout_strategy = "horizontal"
+      else
+        vim.notify("telescope layout strategy has been changed to vertical", "info", { title = "nvim-telescope" })
+        opts.defaults.layout_strategy = "vertical"
+      end
+
       telescope.setup(opts)
       telescope.load_extension("vim_bookmarks")
       telescope.load_extension("undo")
@@ -137,16 +146,13 @@ return {
     },
     opts = {
       pickers = {
-        git_files = {
-          theme = "ivy",
-        },
+        -- git_files = {
+        --   theme = "ivy",
+        -- },
         find_files = {
-          theme = "ivy",
           find_command = { "rg", "--files", "--hidden", "-g", "!.git", "-g", "!devTools", "-g", "!vendor" },
-          -- previewer = false,
         },
         live_grep = {
-          theme = "ivy",
           vimgrep_arguments = {
             "rg",
             "--hidden",
@@ -166,6 +172,8 @@ return {
         },
       },
       defaults = {
+        -- selection_strategy = "follow",
+        layout_strategy = "horizontal",
         cache_picker = {
           num_pickers = 5,
         },
