@@ -19,6 +19,17 @@ return {
           name = "Search",
           e = { "<cmd>Telescope encodings<cr>", "Search encodings" },
         },
+        b = {
+          name = "Buffer",
+          H = {
+            "<cmd>BufferLineMovePrev<cr>",
+            "Move buffer to the left",
+          },
+          L = {
+            "<cmd>BufferLineMoveNext<cr>",
+            "Move buffer to the right",
+          },
+        },
       }, { prefix = "<leader>" })
     end,
   },
