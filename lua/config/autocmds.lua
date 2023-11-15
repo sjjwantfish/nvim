@@ -17,6 +17,27 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+local groovy_augroup = vim.api.nvim_create_augroup("SetGroovyFt", { clear = true })
+local function set_groovy_ft(ev)
+  vim.notify("set " .. ev.file .. " filetype=groovy")
+  vim.cmd("set filetype=groovy")
+end
+vim.api.nvim_create_autocmd("FileType", {
+  group = groovy_augroup,
+  pattern = {
+    "Jenkinsfile",
+  },
+  callback = set_groovy_ft,
+})
+
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufRead" }, {
+  group = groovy_augroup,
+  pattern = {
+    -- "*enkinsfile*",
+    "*roovy",
+  },
+  callback = set_groovy_ft,
+})
 -- -- for wsl
 -- vim.cmd([[
 -- if system('uname -r') =~ "Microsoft"
