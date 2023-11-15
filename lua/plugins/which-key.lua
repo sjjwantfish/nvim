@@ -13,7 +13,7 @@ return {
         },
         g = {
           name = "git",
-          o = { "<cmd>!git open<cr><cr>", "Git open" },
+          o = { "<cmd>silent !git open<cr>", "Git open" },
         },
         s = {
           name = "Search",
