@@ -4,7 +4,7 @@ return {
     opts = {
 
       messages = {
-        enabled = true, -- enables the Noice messages UI
+        enabled = false, -- enables the Noice messages UI
         view = "virtualtext", -- default view for messages
         view_error = "notify", -- view for errors
         view_warn = "notify", -- view for warnings

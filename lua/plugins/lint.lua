@@ -7,6 +7,7 @@ return {
     events = { "BufWritePost", "BufReadPost", "InsertLeave" },
     linters_by_ft = {
       python = { "pylint" },
+      -- module requires Go 1.20
       go = { "golangcilint" },
     },
     linters = {

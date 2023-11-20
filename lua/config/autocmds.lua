@@ -19,7 +19,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
 local groovy_augroup = vim.api.nvim_create_augroup("SetGroovyFt", { clear = true })
 local function set_groovy_ft(ev)
-  vim.notify("set " .. ev.file .. " filetype=groovy")
   vim.cmd("set filetype=groovy")
 end
 vim.api.nvim_create_autocmd("FileType", {
