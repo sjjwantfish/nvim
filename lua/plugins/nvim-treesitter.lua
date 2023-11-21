@@ -92,4 +92,5 @@ return {
   },
   { "windwp/nvim-ts-autotag" },
   { "p00f/nvim-ts-rainbow" },
+  { "martinda/Jenkinsfile-vim-syntax" },
 }

@@ -13,7 +13,6 @@ return {
       { "<a-N>", "<cmd>call WordNavigation(0)<cr>", desc = "Prev InterestingWords" },
     },
   },
-
   { "romainl/vim-cool" },
   { "ap/vim-css-color" },
 }

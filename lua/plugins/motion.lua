@@ -127,7 +127,6 @@ return {
       },
     },
   },
-  { "gbprod/stay-in-place.nvim" },
   {
     "abecodes/tabout.nvim",
     config = function()

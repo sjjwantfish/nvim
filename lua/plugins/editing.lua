@@ -9,7 +9,6 @@ return {
       })
     end,
   },
-  { "martinda/Jenkinsfile-vim-syntax" },
   {
     "numToStr/Comment.nvim",
     dependencies = {
@@ -49,13 +48,6 @@ return {
       ft({ "Jenkinsfile", "groovy" }, { "//%s" })
     end,
   },
-  {
-    "iamcco/markdown-preview.nvim",
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-  },
-  { "Ttibsi/pre-commit.nvim" },
   {
     -- User interface is subject to change without notice.
     "monaqa/dial.nvim",
@@ -124,5 +116,12 @@ return {
       setupFoldKeymaps = false,
     }, -- needed even when using default config
   },
-  { "LintaoAmons/scratch.nvim" },
+  -- selection
+  {
+    "gcmt/wildfire.vim",
+    keys = {
+      { "<Enter>", mode = { "n", "v" }, "<Plug>(wildfire-fuel)", desc = "Select previous text object" },
+      { "<S-Enter>", mode = { "n", "v" }, "<Plug>(wildfire-water)", desc = "Select previous text object" },
+    },
+  },
 }
