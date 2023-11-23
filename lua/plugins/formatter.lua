@@ -45,6 +45,13 @@ return {
             "--remove-duplicate-keys",
           },
         },
+        golines = {
+          inherit = true,
+          prepend_args = {
+            "--base-formatter=gofumpt",
+            "--max-len=100",
+          },
+        },
       },
     },
   },
