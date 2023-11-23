@@ -15,10 +15,13 @@ return {
         },
       }
       vim.g.db_ui_win_position = "right"
+      vim.g.db_ui_save_location = os.getenv("HOME") .. "/.config/nvim/db_ui"
     end,
   },
   {
     "kristijanhusak/vim-dadbod-completion",
+    ft = { "sql", "mysql", "plsql" },
+    lazy = true,
     init = function()
       vim.cmd([[
         autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
