@@ -204,12 +204,23 @@ return {
         })
       end
 
+      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.go",
+        callback = function()
+          local go_format = require("go.format")
+          go_format.goimport()
+          go_format.gofmt()
+        end,
+        group = format_sync_grp,
+      })
+
       require("go").setup({
         icons = { breakpoint = "B", currentpos = "->" },
         run_in_floaterm = true,
         luasnip = true,
         -- goimport = "goimport",
-        -- gofmt = "gofumpt",
+        gofmt = "gofumpt",
         lsp_gofumpt = true,
         diagnostic = {
           underline = false,

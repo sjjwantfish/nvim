@@ -5,7 +5,6 @@ local disabled_plugins = {
   "echasnovski/mini.comment",
   "SmiteshP/nvim-navic",
   "echasnovski/mini.surround",
-  "nvim-neo-tree/neo-tree.nvim",
   "simrat39/symbols-outline.nvim",
 }
 
