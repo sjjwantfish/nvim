@@ -252,16 +252,6 @@ return {
         textobjects = true,
         test_runner = "dlv",
       })
-
-      local opts = { noremap = true, silent = true }
-
-      -- local term_opts = { silent = true }
-
-      -- Shorten function name
-      local keymap = vim.api.nvim_set_keymap
-
-      keymap("n", "<leader>cd", "<cmd>lua lrequire('go.codeaction').run_code_action()<cr>", opts)
-      keymap("x", "<leader>cd", "<cmd>lua require('go.codeaction').run_range_code_action()<cr>", opts)
     end,
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },

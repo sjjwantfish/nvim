@@ -4,9 +4,7 @@ return {
     -- enabled = false,
     config = function()
       vim.api.nvim_set_hl(0, "MyNeoTreeTabInactive", { fg = "none" })
-      -- vim.api.nvim_set_hl(0, "MyNeoTreeTabActive", { fg = "#1f9079" })
-      -- vim.api.nvim_set_hl(0, "MyNeoTreeTabActive", { fg = "#0fb1ce" })
-      vim.api.nvim_set_hl(0, "MyNeoTreeTabActive", { fg = "#8bd7fd" })
+      vim.api.nvim_set_hl(0, "MyNeoTreeTabActive", { fg = "#7199f1" })
 
       vim.api.nvim_set_hl(0, "MyNeoTreeTabInactive", { fg = "none" })
       vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorInactive", { fg = "none" })
