@@ -19,7 +19,7 @@ return {
         lua = { "stylua" },
         -- Conform will run multiple formatters sequentially
         python = { "isort", "black", "autoflake" },
-        -- go = { "golines", "gofumpt" },
+        go = { "golines", "gofumpt", "goimports" },
         -- Use a sub-list to run only the first available formatter
         javascript = { { "prettierd", "prettier" } },
         vue = { { "prettierd", "prettier" } },
