@@ -2,6 +2,35 @@
 -- stylua: ignore
 if true then return {} end
 
+vim.api.nvim_create_user_command("MySelect", function()
+  vim.ui.select({
+    { "name1" },
+    { "name2" },
+    { "name3" },
+  }, {
+    prompt = "Authenticate Type",
+    format_item = function(item)
+      -- print(item[1])
+      return item[1]
+    end,
+  }, function(item)
+    if item then
+      print(item[1])
+      -- item.callback()
+    end
+  end)
+end, { nargs = "?", complete = "dir" })
+
+vim.api.nvim_create_user_command("MyPaste", function()
+  local data = {
+    "a",
+    "b",
+    "c",
+  }
+  for _, value in ipairs(data) do
+    vim.api.nvim_paste(value .. "\n", true, -1)
+  end
+end, { nargs = "?", complete = "dir" })
 -- every spec file under config.plugins will be loaded automatically by lazy.nvim
 --
 -- In your plugin files, you can:

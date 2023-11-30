@@ -3,6 +3,7 @@ return {
     "folke/which-key.nvim",
     config = function()
       local wk = require("which-key")
+      -- leader
       wk.register({
         w = {
           name = "windows",
@@ -31,6 +32,35 @@ return {
           },
         },
       }, { prefix = "<leader>" })
+      -- prefix g
+      wk.register({
+        mode = { "v", "n" },
+        p = {
+          { "%", "Match pair" },
+        },
+      }, { prefix = "g" })
+      -- motion
+      wk.register({
+        mode = { "n", "v" },
+        ["<C-a>"] = {
+          {
+            function()
+              vim.cmd("normal! 0")
+              local char = vim.api.nvim_get_current_line():sub(1, 1)
+              if char:match("%s") then
+                vim.cmd("normal! w")
+              end
+            end,
+            "Move to line head",
+          },
+        },
+        ["<C-e>"] = { "$", "Move to line end" },
+      }, {})
+      wk.register({
+        mode = { "i" },
+        ["<C-a>"] = { "<esc>I", "Move to line head" },
+        ["<C-e>"] = { "<esc>A", "Move to line end" },
+      }, {})
     end,
   },
 }
