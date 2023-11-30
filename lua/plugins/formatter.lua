@@ -21,7 +21,8 @@ return {
         python = { "isort", "black", "autoflake" },
         -- go = { "golines", "gofumpt" },
         -- Use a sub-list to run only the first available formatter
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { { "prettierd", "prettier" } },
+        vue = { { "prettierd", "prettier" } },
       },
       formatters = {
         isort = {
