@@ -42,7 +42,7 @@ return {
       -- motion
       wk.register({
         mode = { "n", "v" },
-        ["<C-a>"] = {
+        ["<A-H>"] = {
           {
             function()
               vim.cmd("normal! 0")
@@ -54,12 +54,12 @@ return {
             "Move to line head",
           },
         },
-        ["<C-e>"] = { "$", "Move to line end" },
+        ["<A-L>"] = { "$", "Move to line end" },
       }, {})
       wk.register({
         mode = { "i" },
-        ["<C-a>"] = { "<esc>I", "Move to line head" },
-        ["<C-e>"] = { "<esc>A", "Move to line end" },
+        ["<A-H>"] = { "<esc>I", "Move to line head" },
+        ["<A-L>"] = { "<esc>A", "Move to line end" },
       }, {})
     end,
   },
