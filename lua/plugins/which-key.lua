@@ -31,6 +31,17 @@ return {
             "Move buffer to the right",
           },
         },
+        ["<TAB>"] = {
+          name = "Tab",
+          l = {
+            "<cmd>tabnext<cr>",
+            "Next Tab",
+          },
+          h = {
+            "<cmd>tabprevious<cr>",
+            "Previous Tab",
+          },
+        },
       }, { prefix = "<leader>" })
       -- prefix g
       wk.register({
