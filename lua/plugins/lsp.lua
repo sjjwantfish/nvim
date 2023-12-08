@@ -151,10 +151,10 @@ return {
         enable = true,
         sign = false,
       },
-      code_action = {
-        show_server_name = true,
-        extend_gitsigns = true,
-      },
+      -- code_action = {
+      --   show_server_name = true,
+      --   extend_gitsigns = true,
+      -- },
     },
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
