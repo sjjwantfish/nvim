@@ -6,6 +6,7 @@ return {
       "hrsh7th/cmp-emoji",
       "lukas-reineke/cmp-under-comparator",
       "hrsh7th/cmp-calc",
+      "ray-x/cmp-treesitter",
     },
     lazy = false,
     event = {
@@ -61,6 +62,7 @@ return {
         { name = "path", group_index = 1 },
         { name = "nvim_lua", group_index = 1 },
         { name = "calc", group_index = 1 },
+        { name = "treesitter", group_index = 1 },
       }
       opts.formatting = {
         fields = { "kind", "abbr", "menu" },
@@ -79,6 +81,7 @@ return {
             path = "[Path]",
             cmp_tabnine = "[TABNINE]",
             calc = "[CALC]",
+            treesitter = "[TS]",
           })[entry.source.name]
           return item
         end,

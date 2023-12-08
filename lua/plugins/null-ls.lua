@@ -2,7 +2,6 @@ return {
   {
     "nvimtools/none-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    enabled = false,
     dependencies = { "mason.nvim" },
     opts = function()
       local nls = require("null-ls")
