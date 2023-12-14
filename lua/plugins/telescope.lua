@@ -165,6 +165,9 @@ return {
             "!vendor",
           },
         },
+        lsp_references = {
+          show_line = false,
+        },
       },
       defaults = {
         -- selection_strategy = "follow",
