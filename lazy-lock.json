@@ -95,6 +95,7 @@
   "pre-commit.nvim": { "branch": "main", "commit": "4a608cef0f0a196fa39cdc60579eb9cf601d21c4" },
   "refactoring.nvim": { "branch": "master", "commit": "bebfcfcc4b604d3647fcce2f4aeb02a95d139c49" },
   "scratch.nvim": { "branch": "main", "commit": "11b22b9e2539eedf2adba8fa35c8f9c66e77d53b" },
+  "smart-splits.nvim": { "branch": "master", "commit": "f0003bf9c3f11b8b9209264f865b8864453ca926" },
   "sqlite.lua": { "branch": "master", "commit": "b7e28c8463254c46a8e61c52d27d6a2040492fc3" },
   "ssr.nvim": { "branch": "main", "commit": "bb323ba621ac647b4ac5638b47666e3ef3c279e1" },
   "sxhkd-vim": { "branch": "master", "commit": "7b7937ff5c220fbef3bdd883d567513246516e06" },
