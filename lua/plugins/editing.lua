@@ -58,8 +58,40 @@ return {
     end,
   },
   {
-    -- User interface is subject to change without notice.
     "monaqa/dial.nvim",
+    event = "VeryLazy",
+    config = function(opts)
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group({
+        default = {
+          -- number
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          -- boolean
+          augend.constant.alias.bool, -- (true <-> false)
+          augend.constant.new({
+            elements = { "True", "False" },
+            cyclic = true,
+          }),
+          -- case
+          augend.case.new({
+            types = { "PascalCase", "camelCase", "snake_case" },
+            cyclic = true,
+          }),
+          -- logic
+          augend.constant.new({
+            elements = { "and", "or" },
+            word = true,
+            cyclic = true,
+          }),
+          augend.constant.new({
+            elements = { "&&", "||" },
+            word = false,
+            cyclic = true,
+          }),
+        },
+      })
+    end,
     init = function()
       vim.keymap.set("n", "<C-a>", function()
         require("dial.map").manipulate("increment", "normal")
