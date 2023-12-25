@@ -12,7 +12,7 @@ return {
       end,
       open_mapping = [[<c-\>]],
       hide_numbers = true,
-      on_open = function(term)
+      on_create = function(term)
         local function get_activate_conda_env()
           local output = vim.fn.systemlist("conda info")
           for _, line in ipairs(output) do
