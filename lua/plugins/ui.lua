@@ -111,4 +111,14 @@ return {
       exclude_groups = {}, -- table: groups you don't want to clear
     },
   },
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        buffer_close_icon = "",
+        always_show_bufferline = true,
+        truncate_names = false,
+      },
+    },
+  },
 }
