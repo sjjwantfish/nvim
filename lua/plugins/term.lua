@@ -24,7 +24,7 @@ return {
           end
         end
         local env = get_activate_conda_env()
-        if env then
+        if env and env ~= "base" then
           term:send("conda activate " .. env)
         end
       end,

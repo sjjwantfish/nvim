@@ -55,7 +55,7 @@ return {
 
       opts.sources = {
         { name = "nvim_lsp", group_index = 1 },
-        { name = "codeium", group_index = 1 },
+        -- { name = "codeium", group_index = 1 },
         { name = "cmp_tabnine", group_index = 1 },
         { name = "luasnip", group_index = 1 },
         { name = "buffer", group_index = 1 },
@@ -73,7 +73,7 @@ return {
             item.kind = icons[item.kind] .. item.kind
           end
           item.menu = ({
-            codeium = "[Codeium]",
+            -- codeium = "[Codeium]",
             nvim_lsp = "[LSP]",
             luasnip = "[Snippet]",
             nvim_lua = "[NVIM_LUA]",
@@ -173,6 +173,7 @@ return {
   -- },
   {
     "jcdickinson/codeium.nvim",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",

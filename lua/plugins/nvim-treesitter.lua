@@ -42,9 +42,6 @@ return {
         -- colors = {}, -- table of hex strings
         -- termcolors = {} -- table of colour name strings
       }
-      opts.context_commentstring = {
-        enable = true,
-      }
       opts.highlight = {
         enable = true,
         -- disable = { "c", "rust" },
