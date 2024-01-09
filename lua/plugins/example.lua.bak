@@ -31,6 +31,146 @@ vim.api.nvim_create_user_command("MyPaste", function()
     vim.api.nvim_paste(value .. "\n", true, -1)
   end
 end, { nargs = "?", complete = "dir" })
+
+vim.api.nvim_create_user_command("MyTest", function()
+  local function get_activate_conda_env()
+    local output = vim.fn.systemlist("conda info")
+    for _, line in ipairs(output) do
+      if string.find(line, "active environment", 1, true) then
+        line = line:gsub("%s", "")
+        local environment = line:gsub("%s", ""):match("activeenvironment:(%S+)")
+        return environment
+      end
+    end
+  end
+  get_activate_conda_env()
+end, { nargs = "?", complete = "dir" })
+
+local function read_file_range(uri, start_line, end_line, start_char, end_char)
+  local path = vim.uri_to_fname(uri)
+  local lines = vim.fn.readfile(path)
+
+  -- 转换为以1为基础的索引
+  start_line = start_line + 1
+  end_line = end_line + 1
+
+  -- 截取指定行范围的内容
+  local content = {}
+  for i = start_line, end_line do
+    local line = lines[i]
+    local start_pos = start_line == i and start_char + 1 or 1
+    local end_pos = end_line == i and end_char or #line
+    table.insert(content, string.sub(line, start_pos, end_pos))
+  end
+
+  return content
+end
+
+local function get_variable_type()
+  local position = vim.fn.getpos(".")
+  local params = {
+    textDocument = vim.lsp.util.make_text_document_params(),
+    position = { line = position[2] - 1, character = position[3] - 1 },
+  }
+
+  vim.lsp.buf_request(0, "textDocument/typeDefinition", params, function(a, target, result)
+    if a and a ~= vim.NIL then
+      print("a:", vim.inspect(a))
+    end
+    if target and target ~= vim.NIL then
+      print("target:", vim.inspect(target))
+      -- local _end = target[1]["range"]["end"]
+      -- local _start = target[1]["range"]["start"]
+      -- local content = read_file_range(target[1]["uri"], _start.line, _end.line, _start.character, _end.character)
+      -- print(vim.inspect(content))
+    end
+    if result and result ~= vim.NIL then
+      print("Variable type:", vim.inspect(result))
+    end
+  end)
+end
+
+vim.api.nvim_create_user_command("GetVarType", function()
+  get_variable_type()
+end, { nargs = "?", complete = "dir" })
+
+-- vim.api.nvim_create_user_command("MyDialogShow", function()
+--   local diag = vim.lsp.diagnostic.get_line_diagnostics()
+--   vim.cmd("new diagnostic")
+--   vim.api.nvim_paste(vim.inspect(diag), true, -1)
+-- end, { nargs = "?", complete = "dir" })
+
+-- function get_gitsigns_actions()
+--   local ok, gitsigns = pcall(require, "gitsigns")
+--   if not ok then
+--     return
+--   end
+
+--   local gitsigns_actions = gitsigns.get_actions()
+--   if not gitsigns_actions or vim.tbl_isempty(gitsigns_actions) then
+--     return
+--   end
+
+--   local name_to_title = function(name)
+--     return name:sub(1, 1):upper() .. name:gsub("_", " "):sub(2)
+--   end
+
+--   local actions = {}
+--   local range_actions = { ["reset_hunk"] = true, ["stage_hunk"] = true }
+--   local mode = vim.api.nvim_get_mode().mode
+--   for name, action in pairs(gitsigns_actions) do
+--     local title = name_to_title(name)
+--     local cb = action
+--     if (mode == "v" or mode == "V") and range_actions[name] then
+--       title = title:gsub("hunk", "selection")
+--       cb = function()
+--         -- action({ params.range.start.line, params.range["end"].line })
+--       end
+--     end
+--     actions[#actions + 1] = {
+--       title = title,
+--       action = function()
+--         -- local bufnr = vim.uri_to_bufnr(params.textDocument.uri)
+--         vim.api.nvim_buf_call(vim.fn.line("."), cb)
+--       end,
+--     }
+--   end
+--   return actions
+-- end
+
+-- vim.api.nvim_create_user_command("ViewGitsignsCodeAction", function()
+--   local actions = get_gitsigns_actions()
+--   vim.cmd("new gitsigns_codeactions")
+--   vim.api.nvim_paste(vim.inspect(actions), true, -1)
+-- end, { nargs = "?", complete = "dir" })
+
+-- function custom_code_action()
+--   local params = vim.lsp.util.make_range_params()
+--   params.context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
+
+--   vim.lsp.buf_request_all(0, "textDocument/codeAction", params, function(result)
+--     -- vim.cmd("new result")
+--     -- vim.api.nvim_paste(vim.inspect(result), true, -1)
+--     result["test_action"] = function()
+--       vim.notify("this is test action")
+--     end
+--     vim.lsp.util.apply_workspace_edit(result, "utf-8")
+--     -- if result and result[1] then
+--     --   -- 添加自定义项目
+--     --   table.insert(result[1].edit.changes, {
+--     --     ["your_file_path"] = {
+--     --       {
+--     --         range = result[1].edit.range,
+--     --         newText = "Your custom text",
+--     --       },
+--     --     },
+--     --   })
+--     --   vim.lsp.util.apply_workspace_edit(result[1].edit)
+--     -- end
+--   end)
+-- end
+
+-- vim.api.nvim_create_user_command("MyCodeAction", custom_code_action, { nargs = "?", complete = "dir" })
 -- every spec file under config.plugins will be loaded automatically by lazy.nvim
 --
 -- In your plugin files, you can:
