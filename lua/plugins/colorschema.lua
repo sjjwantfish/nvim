@@ -72,11 +72,20 @@ return {
     },
   },
   {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      styles = {
+        transparency = true,
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "nightfox",
       -- colorscheme = "tokyonight",
-      colorscheme = "tokyonight-storm",
+      -- colorscheme = "tokyonight-storm",
       -- colorscheme = "material-oceanic",
       -- colorscheme = "material-deep-ocean",
       -- colorscheme = "material-darker",
@@ -86,6 +95,10 @@ return {
       -- colorscheme = "github_dark_tritanopia",
       -- colorscheme = "everblush",
       -- colorscheme = "onedark",
+      colorscheme = "rose-pine",
+      -- colorscheme = "rose-pine-main",
+      -- colorscheme = "rose-pine-moon",
+      -- colorscheme = "rose-pine-dawn",
     },
   },
 }
