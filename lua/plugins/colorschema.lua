@@ -15,12 +15,11 @@ return {
       options = {
         transparent = true,
         modules = {
-          cmp = false,
+          whichkey = false,
         },
       },
       groups = {
         all = {
-          -- NormalFloat = { bg = "NONE" },
           NormalFloat = { fg = "fg1", bg = "NONE" },
         },
       },
@@ -58,19 +57,8 @@ return {
     end,
   },
   { "Everblush/nvim", name = "everblush", opts = {
-    transparent_background = false,
+    transparent_background = true,
   } },
-  {
-    "olimorris/onedarkpro.nvim",
-    opts = {
-      options = {
-        cursorline = true, -- Use cursorline highlighting?
-        transparency = true, -- Use a transparent background?
-        terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
-        highlight_inactive_windows = false, -- When the window is out of focus, change the normal background?
-      },
-    },
-  },
   {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -83,9 +71,16 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "nightfox",
+      colorscheme = "nightfox",
+      -- colorscheme = "duskfox",
+      -- colorscheme = "nordfox",
+      -- colorscheme = "terafox",
+      -- colorscheme = "carbonfox",
       -- colorscheme = "tokyonight",
+      -- colorscheme = "tokyonight-night",
+      -- colorscheme = "tokyonight-moon",
       -- colorscheme = "tokyonight-storm",
+      -- colorscheme = "everblush",
       -- colorscheme = "material-oceanic",
       -- colorscheme = "material-deep-ocean",
       -- colorscheme = "material-darker",
@@ -93,9 +88,7 @@ return {
       -- colorscheme = "github_dark",
       -- colorscheme = "github_dark_colorblind",
       -- colorscheme = "github_dark_tritanopia",
-      -- colorscheme = "everblush",
-      -- colorscheme = "onedark",
-      colorscheme = "rose-pine",
+      -- colorscheme = "rose-pine",
       -- colorscheme = "rose-pine-main",
       -- colorscheme = "rose-pine-moon",
       -- colorscheme = "rose-pine-dawn",
