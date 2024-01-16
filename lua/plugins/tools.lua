@@ -43,6 +43,7 @@ return {
             "sxhkd",
             "yuck",
             "yaml",
+            "terraform",
           },
           config = {
             tabwidth = 2,
