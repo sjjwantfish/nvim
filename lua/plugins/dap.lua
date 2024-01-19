@@ -27,7 +27,7 @@ return {
       config_dapui()
     end,
     keys = {
-      { "<leader>kk", "<cmd>DapToggleBreakpoint<cr>", desc = "Dap Toggle Breakpoint" },
+      -- { "<leader>kk", "<cmd>DapToggleBreakpoint<cr>", desc = "Dap Toggle Breakpoint" },
       { "<leader>kc", "<cmd>DapContinue<cr>", desc = "DapContinue" },
     },
   },
@@ -100,6 +100,31 @@ return {
     "theHamsta/nvim-dap-virtual-text",
     opts = {
       highlight_new_as_changed = true,
+    },
+  },
+  {
+    "Weissle/persistent-breakpoints.nvim",
+    event = "BufReadPost",
+    opts = {
+      save_dir = vim.fn.stdpath("data") .. "/nvim_checkpoints",
+      load_breakpoints_event = { "BufReadPost" },
+    },
+    keys = {
+      {
+        "<leader>kk",
+        "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>",
+        desc = "Dap Toggle Breakpoint",
+      },
+      {
+        "<leader>kK",
+        "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>",
+        desc = "Dap Set Conditional Breakpoint",
+      },
+      {
+        "<leader>kl",
+        "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",
+        desc = "Dap Set Conditional Breakpoint",
+      },
     },
   },
 }

@@ -121,4 +121,44 @@ return {
       },
     },
   },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
+    opts = {
+      chunk = {
+        chars = {
+          horizontal_line = "─",
+          vertical_line = "│",
+          left_top = "╭",
+          left_bottom = "╰",
+          right_arrow = ">",
+        },
+        style = {
+          { fg = "#CB8764" },
+        },
+        -- chars = {
+        --   horizontal_line = "─",
+        --   vertical_line = "│",
+        --   left_top = "╭",
+        --   left_bottom = "╰",
+        --   right_arrow = ">",
+        -- },
+        -- style = {
+        --   { fg = "#806d9c" },
+        --   { fg = "#c21f30" },
+        -- },
+        max_file_size = 1024 * 1024,
+        error_sign = true,
+      },
+      line_num = {
+        enable = false,
+      },
+      -- blank = {
+      --   enable = false,
+      -- },
+      indent = {
+        enable = false,
+      },
+    },
+  },
 }
