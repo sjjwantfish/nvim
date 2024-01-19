@@ -6,6 +6,8 @@ local disabled_plugins = {
   "SmiteshP/nvim-navic",
   "echasnovski/mini.surround",
   "simrat39/symbols-outline.nvim",
+  "lukas-reineke/indent-blankline.nvim",
+  "echasnovski/mini.indentscope",
 }
 
 local M = {}
