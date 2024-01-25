@@ -56,7 +56,7 @@ return {
       opts.sources = {
         { name = "nvim_lsp", group_index = 1 },
         -- { name = "codeium", group_index = 1 },
-        { name = "cmp_tabnine", group_index = 1 },
+        -- { name = "cmp_tabnine", group_index = 1 },
         { name = "luasnip", group_index = 1 },
         { name = "buffer", group_index = 1 },
         { name = "path", group_index = 1 },
@@ -79,7 +79,7 @@ return {
             nvim_lua = "[NVIM_LUA]",
             buffer = "[Buffer]",
             path = "[Path]",
-            cmp_tabnine = "[TABNINE]",
+            -- cmp_tabnine = "[TABNINE]",
             calc = "[CALC]",
             treesitter = "[TS]",
           })[entry.source.name]
@@ -134,6 +134,7 @@ return {
   },
   {
     "tzachar/cmp-tabnine",
+    enabled = false,
     build = "./install.sh",
     dependencies = "hrsh7th/nvim-cmp",
     opts = {
