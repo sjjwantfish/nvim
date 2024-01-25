@@ -131,7 +131,8 @@ return {
           vertical_line = "┃",
           left_top = "┏",
           left_bottom = "┗",
-          right_arrow = ">",
+          -- right_arrow = ">",
+          right_arrow = "",
         },
         style = {
           { fg = "#5395c6" },
