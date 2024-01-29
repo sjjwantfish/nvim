@@ -12,6 +12,7 @@ return {
       vim.g.db_ui_table_helpers = {
         mysql = {
           Structure = "SHOW CREATE TABLE {table};",
+          ListByUpdate = "SELECT * FROM {table} ORDER BY `update_time` DESC",
         },
       }
       vim.g.db_ui_win_position = "right"
@@ -23,9 +24,27 @@ return {
     ft = { "sql", "mysql", "plsql" },
     lazy = true,
     init = function()
-      vim.cmd([[
-        autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
-      ]])
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("dadbod-cmp", { clear = true }),
+        pattern = {
+          "sql",
+          "mysql",
+          "plsql",
+        },
+        callback = function(_)
+          require("cmp").setup.buffer({
+            sources = { { name = "vim-dadbod-completion" } },
+            formatting = {
+              fields = { "kind", "abbr", "menu" },
+              format = function(entry, item)
+                item.kind = ""
+                item.menu = "[DB]"
+                return item
+              end,
+            },
+          })
+        end,
+      })
     end,
   },
 }
