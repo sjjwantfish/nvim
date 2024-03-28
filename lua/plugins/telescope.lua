@@ -68,7 +68,7 @@ return {
       if vim.api.nvim_win_get_width(0) > 120 then
         opts.defaults.layout_strategy = "horizontal"
       else
-        vim.notify("telescope layout strategy has been changed to vertical", "info", { title = "nvim-telescope" })
+        -- vim.notify("telescope layout strategy has been changed to vertical", "info", { title = "nvim-telescope" })
         opts.defaults.layout_strategy = "vertical"
       end
 

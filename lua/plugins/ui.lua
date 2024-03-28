@@ -126,6 +126,7 @@ return {
     event = { "UIEnter" },
     opts = {
       chunk = {
+        notify = false,
         exclude_filetypes = { dbui = true, toml = true },
         chars = {
           horizontal_line = "━",
