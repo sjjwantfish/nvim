@@ -65,6 +65,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    dependencies = { "nvim-neotest/nvim-nio" },
     keys = {
       { "<leader>kt", "<cmd>lua require('dapui').toggle()<cr>", desc = "DapUI Toggle" },
     },
