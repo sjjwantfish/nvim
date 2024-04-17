@@ -55,8 +55,8 @@ return {
 
       opts.sources = {
         { name = "nvim_lsp", group_index = 1 },
-        -- { name = "codeium", group_index = 1 },
-        -- { name = "cmp_tabnine", group_index = 1 },
+        { name = "codeium", group_index = 1 },
+        { name = "cmp_tabnine", group_index = 1 },
         { name = "luasnip", group_index = 1 },
         { name = "buffer", group_index = 1 },
         { name = "path", group_index = 1 },
@@ -73,14 +73,14 @@ return {
             item.kind = icons[item.kind] .. item.kind
           end
           item.menu = ({
-            -- codeium = "[Codeium]",
+            codeium = "[Codeium]",
             nvim_lsp = "[LSP]",
             luasnip = "[Snippet]",
             nvim_lua = "[NVIM_LUA]",
             buffer = "[Buffer]",
             path = "[Path]",
-            -- cmp_tabnine = "[TABNINE]",
-            calc = "[CALC]",
+            cmp_tabnine = "[Tabnine]",
+            calc = "[Calc]",
             treesitter = "[TS]",
           })[entry.source.name]
           return item
@@ -134,7 +134,7 @@ return {
   },
   {
     "tzachar/cmp-tabnine",
-    enabled = false,
+    -- enabled = false,
     build = "./install.sh",
     dependencies = "hrsh7th/nvim-cmp",
     opts = {
@@ -151,27 +151,6 @@ return {
       show_prediction_strength = false,
     },
   },
-  -- {
-  --   "Exafunction/codeium.vim",
-  --   lazy = true,
-  --   event = { "InsertEnter" },
-  --   config = function()
-  --     vim.g.codeium_disable_bindings = 1
-  --     -- Change '<C-g>' here to any keycode you like.
-  --     vim.keymap.set("i", "<a-s>", function()
-  --       return vim.fn["codeium#Accept"]()
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<a-i>", function()
-  --       return vim.fn["codeium#CycleCompletions"](1)
-  --     end, { expr = true })
-  --     -- vim.keymap.set("i", "<a-,>", function()
-  --     --   return vim.fn["codeium#CycleCompletions"](-1)
-  --     -- end, { expr = true })
-  --     vim.keymap.set("i", "<a-x>", function()
-  --       return vim.fn["codeium#Clear"]()
-  --     end, { expr = true })
-  --   end,
-  -- },
   {
     "Exafunction/codeium.nvim",
     -- enabled = false,
