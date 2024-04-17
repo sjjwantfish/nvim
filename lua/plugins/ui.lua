@@ -2,7 +2,6 @@ return {
   {
     "folke/noice.nvim",
     opts = {
-
       messages = {
         enabled = false, -- enables the Noice messages UI
         view = "virtualtext", -- default view for messages
@@ -72,11 +71,35 @@ return {
       })
     end,
   },
-  { "kevinhwang91/nvim-bqf", opts = {
-    preview = {
-      winblend = 0,
+  {
+    "kevinhwang91/nvim-bqf",
+    opts = {
+      preview = {
+        winblend = 0,
+      },
     },
-  } },
+    init = function()
+      vim.cmd("packadd cfilter")
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("QfCfilterMapping", { clear = true }),
+        pattern = { "qf" },
+        callback = function(_)
+          -- support cfilter
+          vim.keymap.set({ "n" }, "<c-/>", function()
+            local qfwin = vim.api.nvim_get_current_win()
+            vim.ui.input({ prompt = "Cfilter: " }, function(input)
+              if string.sub(input, 1, 1) == "!" and #input > 1 then
+                vim.cmd("Cfilter! " .. string.sub(input, 2))
+              else
+                vim.cmd("Cfilter " .. input)
+              end
+              vim.api.nvim_set_current_win(qfwin)
+            end)
+          end)
+        end,
+      })
+    end,
+  },
   {
     "xiyaowong/transparent.nvim",
     enabled = false,
