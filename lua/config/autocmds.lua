@@ -7,6 +7,16 @@ local function augroup(name)
 end
 
 vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("autowrap"),
+  pattern = {
+    "Trouble",
+  },
+  callback = function(_)
+    vim.opt.wrap = true
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
   group = augroup("move_window"),
   pattern = {
     "help",

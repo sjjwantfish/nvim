@@ -73,11 +73,15 @@ return {
   },
   {
     "kevinhwang91/nvim-bqf",
-    opts = {
-      preview = {
-        winblend = 0,
-      },
-    },
+    opts = function()
+      return {
+        preview = {
+          winblend = 0,
+          win_height = math.floor(vim.api.nvim_win_get_height(0) * 0.6),
+          wrap = true,
+        },
+      }
+    end,
     init = function()
       vim.cmd("packadd cfilter")
       vim.api.nvim_create_autocmd("FileType", {
