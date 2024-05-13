@@ -49,3 +49,16 @@ end
 vim.api.nvim_create_user_command("RunCommand", function()
   execute_and_print_cmd()
 end, { nargs = "?", complete = "dir" })
+
+vim.api.nvim_create_user_command("SplitLine", function(s)
+  local position = vim.fn.getpos(".")
+
+  local line = vim.api.nvim_get_current_line()
+  local lines = vim.fn.split(line, s.args)
+
+  if #lines > 0 then
+    vim.api.nvim_set_current_line("")
+  end
+
+  vim.api.nvim_buf_set_lines(0, position[2] - 1, position[2] + #lines - 1, false, lines)
+end, { nargs = "?", complete = "dir" })
