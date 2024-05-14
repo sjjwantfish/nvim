@@ -48,6 +48,11 @@ return {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
+      diagnostics = {
+        float = {
+          border = "rounded",
+        },
+      },
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
@@ -168,8 +173,8 @@ return {
       handler_opts = {
         border = "double",
       },
-      noice = true,
-      -- transparency = 1,
+      wrap = true,
+      max_height = 20,
     },
   },
   {
