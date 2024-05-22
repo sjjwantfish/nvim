@@ -180,9 +180,24 @@ return {
             },
           },
           lua = {
-            target_query = [[ 
+            target_query = [[
               (string) @string_capture
             ]],
+            offsets = {
+              string_start_capture = 1,
+            },
+          },
+          go = {
+            target_query = [[ 
+            (for_statement) @if_statement_capture
+            (if_statement)  @for_statement_capture
+            (interpreted_string_literal) @string_capture
+            (argument_list) @argument_list_capture
+            (parameter_declaration) @parameter_declaration_capture
+            ]],
+            offsets = {
+              string_start_capture = 1,
+            },
           },
           offsets = {
             string_start_capture = 1,
@@ -196,7 +211,9 @@ return {
               (parameters) @parameters_capture
               (argument_list) @argument_list_capture
           ]],
-          offsets = {},
+          offsets = {
+            string_start_capture = 1,
+          },
         },
       })
     end,
