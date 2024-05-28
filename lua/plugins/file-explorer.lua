@@ -3,12 +3,12 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     -- enabled = false,
     config = function()
-      vim.api.nvim_set_hl(0, "MyNeoTreeTabInactive", { fg = "none" })
-      vim.api.nvim_set_hl(0, "MyNeoTreeTabActive", { fg = "#7199f1" })
+      -- vim.api.nvim_set_hl(0, "MyNeoTreeTabInactive", { fg = "none" })
+      -- vim.api.nvim_set_hl(0, "MyNeoTreeTabActive", { fg = "#7199f1" })
 
-      vim.api.nvim_set_hl(0, "MyNeoTreeTabInactive", { fg = "none" })
-      vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorInactive", { fg = "none" })
-      vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorActive", { fg = "none" })
+      -- vim.api.nvim_set_hl(0, "MyNeoTreeTabInactive", { fg = "none" })
+      -- vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorInactive", { fg = "none" })
+      -- vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorActive", { fg = "none" })
 
       local opts = {
         auto_clean_after_session_restore = true,
@@ -101,6 +101,7 @@ return {
           end,
         },
         window = {
+          auto_expand_width = true,
           width = 30,
           mappings = {
             ["<space>"] = false, -- disable space until we figure out which-key disabling
