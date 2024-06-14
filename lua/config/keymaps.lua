@@ -62,3 +62,52 @@ vim.api.nvim_create_user_command("SplitLine", function(s)
 
   vim.api.nvim_buf_set_lines(0, position[2] - 1, position[2] + #lines - 1, false, lines)
 end, { nargs = "?", complete = "dir" })
+
+local function add_type(start_line, end_line)
+  vim.ui.input({ prompt = "Type: " }, function(input)
+    if not input then
+      return
+    end
+    for i = start_line, end_line do
+      local line = vim.fn.getline(i)
+      line = line:gsub("=", ": " .. input .. " =")
+      vim.fn.setline(i, line)
+    end
+  end)
+end
+
+vim.api.nvim_create_user_command("CustomPanel", function()
+  local mode = vim.fn.mode()
+  local ls = vim.fn.line(".")
+  local le = ls
+  if mode == "v" or mode == "V" then
+    local cs
+    local ce
+    _, ls, cs = unpack(vim.fn.getpos("v"))
+    _, le, ce = unpack(vim.fn.getpos("."))
+
+    if ls > le or (ls == le and cs > ce) then
+      ls, cs, le, ce = le, ce, ls, cs
+    end
+  end
+  vim.ui.select({
+    {
+      label = "Add var type",
+      idx = 1,
+    },
+  }, {
+    prompt = "CustomPanel Func",
+    format_item = function(item)
+      return item.label
+    end,
+  }, function(item)
+    if not item then
+      return
+    end
+    if item.idx == 1 then
+      add_type(ls, le)
+    end
+  end)
+end, { nargs = "?", complete = "dir" })
+keymap("n", "<leader>vp", "<cmd>CustomPanel<cr>", opts)
+keymap("v", "<leader>vp", "<cmd>CustomPanel<cr>", opts)
