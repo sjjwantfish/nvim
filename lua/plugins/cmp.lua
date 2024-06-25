@@ -3,10 +3,8 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-emoji",
       "lukas-reineke/cmp-under-comparator",
       "hrsh7th/cmp-calc",
-      "ray-x/cmp-treesitter",
     },
     lazy = false,
     event = {
@@ -15,13 +13,6 @@ return {
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
-
-      local luasnip = require("luasnip")
       local cmp = require("cmp")
       local border = {
         { "┏", "FloatBorder" },
@@ -55,17 +46,17 @@ return {
 
       opts.sources = {
         { name = "nvim_lsp", group_index = 1 },
-        { name = "codeium", group_index = 1 },
-        { name = "cmp_tabnine", group_index = 1 },
-        { name = "luasnip", group_index = 1 },
-        { name = "buffer", group_index = 1 },
+        { name = "codeium", group_index = 2 },
+        { name = "cmp_tabnine", group_index = 2 },
+        { name = "snippets", group_index = 2 },
+        { name = "buffer", group_index = 2 },
         { name = "path", group_index = 1 },
         { name = "nvim_lua", group_index = 1 },
-        { name = "calc", group_index = 1 },
-        { name = "treesitter", group_index = 1 },
+        { name = "calc", group_index = 3 },
       }
       opts.formatting = {
         fields = { "kind", "abbr", "menu" },
+        expandable_indicator = false,
         format = function(entry, item)
           -- icons
           local icons = require("lazyvim.config").icons.kinds
@@ -75,13 +66,12 @@ return {
           item.menu = ({
             codeium = "[Codeium]",
             nvim_lsp = "[LSP]",
-            luasnip = "[Snippet]",
+            snippets = "[Snippet]",
             nvim_lua = "[NVIM_LUA]",
             buffer = "[Buffer]",
             path = "[Path]",
             cmp_tabnine = "[Tabnine]",
             calc = "[Calc]",
-            treesitter = "[TS]",
           })[entry.source.name]
           return item
         end,
@@ -89,13 +79,8 @@ return {
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
+            -- cmp.select_next_item({ behavior = cmp.ConfirmBehavior.Insert })
             cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-            -- elseif has_words_before() then
-            --   cmp.complete()
           else
             fallback()
           end
@@ -103,33 +88,14 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
           else
             fallback()
           end
         end, { "i", "s" }),
-        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<C-k>"] = cmp.mapping.select_prev_item(),
+        ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replaces }),
       })
-
-      opts.sorting = {
-        comparators = {
-          cmp.config.compare.offset,
-          cmp.config.compare.exact,
-          cmp.config.compare.score,
-          require("cmp-under-comparator").under,
-          cmp.config.compare.kind,
-          cmp.config.compare.sort_text,
-          cmp.config.compare.length,
-          cmp.config.compare.order,
-        },
-      }
-
-      opts.confirm_opts = {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
-      }
     end,
   },
   {

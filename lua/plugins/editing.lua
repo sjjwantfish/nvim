@@ -27,7 +27,6 @@ return {
       padding = true,
       sticky = true,
       ignore = "^$",
-      pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       post_hook = nil,
     },
     keys = {
