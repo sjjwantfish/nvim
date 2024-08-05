@@ -145,7 +145,36 @@ return {
         buffer_close_icon = "",
         always_show_bufferline = true,
         truncate_names = false,
+        groups = {
+          options = {
+            toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
+          },
+          items = {
+            {
+              name = "Tests", -- Mandatory
+              highlight = { sp = "gray" }, -- Optional
+              priority = 2, -- determines where it will appear relative to other groups (Optional)
+              icon = "", -- Optional
+              matcher = function(buf) -- Mandatory
+                return buf.name:match("test_") or buf.name:match("_test")
+              end,
+            },
+            {
+              name = "Docs",
+              highlight = { sp = "green" },
+              auto_close = false, -- whether or not close this group if it doesn't contain the current buffer
+              matcher = function(buf)
+                return buf.name:match("%.md") or buf.name:match("%.txt")
+              end,
+            },
+            require("bufferline.groups").builtin.ungrouped,
+          },
+        },
       },
+    },
+    keys = {
+      { "<leader>bl", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
+      { "<leader>bh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
     },
   },
   {
