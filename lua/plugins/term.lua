@@ -16,6 +16,8 @@ local function on_term_create(term)
   end
 end
 
+local term
+
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -34,18 +36,27 @@ return {
         on_term_create(term)
       end,
       -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
-      direction = "vertical",
+      -- direction = "vertical",
+      direction = "float",
       float_opts = {
-        -- border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+        border = "curved",
+      },
+      winbar = {
+        enabled = true,
+        name_formatter = function(term) --  term: Terminal
+          return term.name
+        end,
       },
     },
     keys = {
       {
-        "<leader>tt",
-        mode = { "n" },
+        "<c-/>",
+        mode = { "n", "i" },
         function()
-          local Terminal = require("toggleterm.terminal").Terminal
-          local term = Terminal:new()
+          if not term then
+            local Terminal = require("toggleterm.terminal").Terminal
+            term = Terminal:new()
+          end
           term:toggle()
         end,
         desc = "New Terminal",
