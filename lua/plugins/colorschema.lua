@@ -69,9 +69,21 @@ return {
     },
   },
   {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      transparent_background = true,
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nightfox",
+      colorscheme = "catppuccin",
+      -- colorscheme = "catppuccin-frappe",
+      -- colorscheme = "catppuccin-macchiato",
+      -- colorscheme = "catppuccin-mocha",
+      -- colorscheme = "nightfox",
       -- colorscheme = "duskfox",
       -- colorscheme = "nordfox",
       -- colorscheme = "terafox",
