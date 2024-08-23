@@ -160,8 +160,8 @@ return {
         --key_bindings_disabled = true,
 
         key_bindings = {
-          next = "<Tab>",
-          previous = "<S-Tab>",
+          next = "<c-Tab>",
+          previous = "<c-s-Tab>",
         },
 
         -- use :InspectTree to discover the (capture group)
