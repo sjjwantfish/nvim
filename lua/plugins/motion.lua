@@ -199,6 +199,14 @@ return {
               string_start_capture = 1,
             },
           },
+          -- vue = {
+          --   target_query = [[
+          --     (script_element (raw_text (export_statement (pair))) ) @js_string
+          --   ]],
+          --   offsets = {
+          --     string_start_capture = 1,
+          --   },
+          -- },
           offsets = {
             string_start_capture = 1,
           },
