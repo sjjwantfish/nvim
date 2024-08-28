@@ -23,7 +23,8 @@ return {
         -- vue
         "vue-language-server",
         -- "eslint_d",
-        "prettier",
+        -- "prettier",
+        "eslint-lsp",
         -- buf
         "buf-language-server",
         "buf",

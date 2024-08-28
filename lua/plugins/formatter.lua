@@ -19,6 +19,8 @@ return {
         lua = { "stylua" },
         python = { "isort", "black", "autoflake" },
         go = { "golines", "gofumpt", "goimports" },
+        -- javascript = { { "eslint", stop_after_first = true } },
+        -- vue = { { "eslint", stop_after_first = true } },
         javascript = { "eslint" },
         vue = { "eslint" },
       },
