@@ -11,13 +11,16 @@ return {
       cancel_color_key = "<leader>hcw",
     },
   },
+  -- Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
   { "romainl/vim-cool" },
+  -- Highlight color codes like #RRGGBB and others.
   {
     "norcalli/nvim-colorizer.lua",
     opts = {
       "*",
     },
   },
+  -- changes the color of your cursor’s line number based on the current Vim mode.
   {
     "mawkler/modicator.nvim",
     init = function()

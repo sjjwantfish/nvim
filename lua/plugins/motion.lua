@@ -14,22 +14,6 @@ return {
     end,
   },
   {
-    "cbochs/portal.nvim",
-    opts = {
-      window_options = {
-        height = 7,
-      },
-      escape = {
-        ["<esc>"] = true,
-        ["q"] = true,
-      },
-    },
-    init = function()
-      vim.keymap.set("n", "<leader>o", "<cmd>Portal jumplist backward<cr>")
-      vim.keymap.set("n", "<leader>i", "<cmd>Portal jumplist forward<cr>")
-    end,
-  },
-  {
     "ThePrimeagen/harpoon",
     keys = {
       { "<leader>;;", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "harpoon quick menu" },
