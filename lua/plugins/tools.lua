@@ -1,6 +1,5 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = false },
-  { "LintaoAmons/scratch.nvim" },
   {
     "rafcamlet/nvim-luapad",
     opts = {
