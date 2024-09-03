@@ -167,8 +167,11 @@ return {
   {
     "mg979/vim-visual-multi",
     init = function()
-      vim.g.VM_default_mappings = 0
+      vim.g.VM_theme = "lightpurple1"
+      vim.g.VM_highlight_matches = "underline"
       vim.g.VM_maps = {
+        ["Undo"] = "u",
+        ["Redo"] = "<C-r>",
         ["Add Cursor Down"] = "<C-S-j>",
         ["Add Cursor Up"] = "<C-S-k>",
         ["Select All"] = "<leader>va",
