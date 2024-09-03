@@ -18,6 +18,8 @@ return {
           "json",
           "--max-line-length=80",
           "-d=C0112,C0114,C0115,C0116,W0621,E0401,C0103",
+          "--logging-fstring-interpolation=false",
+          "--logging-format-interpolation=true",
         },
         ignore_exitcode = true,
       },
