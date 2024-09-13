@@ -70,7 +70,7 @@ local function add_type(start_line, end_line)
     end
     for i = start_line, end_line do
       local line = vim.fn.getline(i)
-      line = line:gsub("=", ": " .. input .. " =")
+      line = line:gsub(" =", ": " .. input .. " =")
       vim.fn.setline(i, line)
     end
   end)
@@ -111,3 +111,24 @@ vim.api.nvim_create_user_command("CustomPanel", function()
 end, { nargs = "?", complete = "dir" })
 keymap("n", "<leader>vp", "<cmd>CustomPanel<cr>", opts)
 keymap("v", "<leader>vp", "<cmd>CustomPanel<cr>", opts)
+
+vim.api.nvim_create_user_command("TSQuery", function(s)
+  if s.args == nil then
+    return
+  end
+  local bufnr = vim.api.nvim_get_current_buf()
+  local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+  local lang = vim.treesitter.language.get_lang(ft)
+  local parser = vim.treesitter.get_parser(bufnr, lang)
+  local tree = parser:parse()[1]
+  local query = vim.treesitter.query.parse(lang, s.args)
+  for capture, node in query:iter_captures(tree:root(), bufnr) do
+    -- local start_row, start_col, _, _ = node:range()
+    -- if start_row > cursor_line or (start_row == cursor_line and start_col > cursor_col) then
+    --   -- move_cursor(capture, node, offsets, query)
+    --   -- return
+    -- end
+    print(capture)
+    print(vim.inspect(node))
+  end
+end, { nargs = "?", complete = "dir" })

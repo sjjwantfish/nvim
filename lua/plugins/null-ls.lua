@@ -1,3 +1,17 @@
+local function add_type(start_line, end_line)
+  vim.ui.input({ prompt = "Type: " }, function(input)
+    if not input then
+      return
+    end
+    input = input:gsub(" ", "")
+    for i = start_line, end_line do
+      local line = vim.fn.getline(i)
+      line = line:gsub(" =", ": " .. input .. " =")
+      vim.fn.setline(i, line)
+    end
+  end)
+end
+
 return {
   {
     "nvimtools/none-ls.nvim",
@@ -5,8 +19,8 @@ return {
     dependencies = { "mason.nvim" },
     opts = function()
       local nls = require("null-ls")
-      local print = {
-        name = "print",
+      local custom = {
+        name = "custom",
         filetypes = {},
         generator = {
           fn = function(params)
@@ -37,6 +51,14 @@ return {
                   end
                 end,
               },
+              {
+                title = "Add var type",
+                action = function()
+                  local _start = params.lsp_params.range.start
+                  local _end = params.lsp_params.range["end"]
+                  add_type(_start.line + 1, _end.line + 1)
+                end,
+              },
             }
           end,
         },
@@ -45,7 +67,7 @@ return {
 
       return {
         sources = {
-          print,
+          custom,
           -- -- lua
           -- nls.builtins.formatting.stylua,
           -- -- python
