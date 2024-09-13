@@ -79,7 +79,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      -- colorscheme = "catppuccin",
       -- colorscheme = "catppuccin-frappe",
       -- colorscheme = "catppuccin-macchiato",
       -- colorscheme = "catppuccin-mocha",
@@ -91,7 +91,7 @@ return {
       -- colorscheme = "tokyonight",
       -- colorscheme = "tokyonight-night",
       -- colorscheme = "tokyonight-moon",
-      -- colorscheme = "tokyonight-storm",
+      colorscheme = "tokyonight-storm",
       -- colorscheme = "everblush",
       -- colorscheme = "material-oceanic",
       -- colorscheme = "material-deep-ocean",
