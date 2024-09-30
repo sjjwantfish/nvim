@@ -28,6 +28,8 @@ return {
         -- buf
         "buf-language-server",
         "buf",
+        -- sql
+        "sql-formatter",
       },
     },
   },

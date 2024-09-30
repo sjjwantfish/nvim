@@ -23,6 +23,7 @@ return {
         -- vue = { { "eslint", stop_after_first = true } },
         javascript = { "eslint" },
         vue = { "eslint" },
+        sql = { "sql_formatter" },
       },
       formatters = {
         isort = {
