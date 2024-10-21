@@ -190,4 +190,9 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
   },
+  {
+    "ariel-frischer/bmessages.nvim",
+    event = "CmdlineEnter",
+    opts = {},
+  },
 }
