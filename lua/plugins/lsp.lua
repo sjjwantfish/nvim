@@ -89,12 +89,11 @@ return {
         -- },
         -- vuels = {},
         volar = {
-          -- settings = {
-          --   vue = {
-          --     updateImportsOnFileMove = { enabled = true },
-          --     { server = { fullCompletionList = true, petiteVue = { supportHtmlFile = true } } },
-          --   },
-          -- },
+          init_options = {
+            vue = {
+              hybridMode = false,
+            },
+          },
         },
         -- gopls = {},
       },
