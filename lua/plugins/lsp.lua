@@ -271,4 +271,12 @@ return {
       vim.g.terraform_fmt_on_save = 1
     end,
   },
+  {
+    "VidocqH/lsp-lens.nvim",
+    opts = {
+      sections = {
+        definition = true,
+      },
+    },
+  },
 }
