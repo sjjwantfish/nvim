@@ -2,14 +2,13 @@ return {
   {
     "folke/noice.nvim",
     opts = {
-      messages = {
-        enabled = false, -- enables the Noice messages UI
-        view = "virtualtext", -- default view for messages
-        view_error = "notify", -- view for errors
-        view_warn = "notify", -- view for warnings
-        view_history = "messages", -- view for :messages
-        view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
-      },
+      -- messages = {
+      --   view = "virtualtext", -- default view for messages
+      --   view_error = "notify", -- view for errors
+      --   view_warn = "notify", -- view for warnings
+      --   view_history = "messages", -- view for :messages
+      --   view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+      -- },
       lsp = {
         signature = {
           enabled = false,
@@ -19,11 +18,7 @@ return {
         },
       },
       presets = {
-        -- bottom_search = true, -- use a classic bottom cmdline for search
-        -- command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        -- inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = true, -- add a border to hover docs and signature help
       },
     },
   },
@@ -65,7 +60,7 @@ return {
         pattern = { "qf" },
         callback = function(_)
           -- support cfilter
-          vim.keymap.set({ "n" }, "<c-/>", function()
+          vim.keymap.set({ "n" }, "<c-.>", function()
             local qfwin = vim.api.nvim_get_current_win()
             vim.ui.input({ prompt = "Cfilter: " }, function(input)
               if string.sub(input, 1, 1) == "!" and #input > 1 then
@@ -154,32 +149,6 @@ return {
     },
   },
   {
-    "shellRaining/hlchunk.nvim",
-    event = { "UIEnter" },
-    opts = {
-      chunk = {
-        notify = false,
-        exclude_filetypes = { dbui = true, toml = true },
-        chars = {
-          horizontal_line = "━",
-          vertical_line = "┃",
-          left_top = "┏",
-          left_bottom = "┗",
-          -- right_arrow = ">",
-          right_arrow = "",
-        },
-        style = {
-          { fg = "#5395c6" },
-        },
-        max_file_size = 1024 * 1024,
-        error_sign = true,
-      },
-      line_num = {
-        enable = false,
-      },
-    },
-  },
-  {
     "OXY2DEV/foldtext.nvim",
     lazy = false,
   },
@@ -194,5 +163,18 @@ return {
     "ariel-frischer/bmessages.nvim",
     event = "CmdlineEnter",
     opts = {},
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      scope = {
+        enabled = true,
+        show_start = true,
+        show_end = true,
+        injected_languages = false,
+        -- highlight = { "Function", "Label" },
+        priority = 500,
+      },
+    },
   },
 }
