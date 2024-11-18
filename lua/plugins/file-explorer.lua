@@ -10,6 +10,10 @@ return {
       -- vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorInactive", { fg = "none" })
       -- vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorActive", { fg = "none" })
 
+      local function on_move(data)
+        Snacks.rename.on_rename_file(data.source, data.destination)
+      end
+      local events = require("neo-tree.events")
       local opts = {
         auto_clean_after_session_restore = true,
         close_if_last_window = true,
@@ -158,6 +162,8 @@ return {
               vim.opt_local.signcolumn = "auto"
             end,
           },
+          { event = events.FILE_MOVED, handler = on_move },
+          { event = events.FILE_RENAMED, handler = on_move },
         },
       }
       require("neo-tree").setup(opts)

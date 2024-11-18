@@ -132,3 +132,35 @@ vim.api.nvim_create_user_command("TSQuery", function(s)
     print(vim.inspect(node))
   end
 end, { nargs = "?", complete = "dir" })
+
+-- camelCase to snake_case
+local function camelToSnake(str)
+  return str
+    :gsub("(%u)", function(c)
+      return "_" .. c:lower()
+    end)
+    :gsub("^_", "")
+end
+
+vim.api.nvim_create_user_command("CamelToSnake", function()
+  local visual_mode = vim.fn.mode() == "v" or vim.fn.mode() == "V"
+  local word
+
+  if not visual_mode then
+    vim.cmd("normal viw")
+  end
+
+  local _, ls, cs = unpack(vim.fn.getpos("v"))
+  local _, le, ce = unpack(vim.fn.getpos("."))
+
+  if ls > le or (ls == le and cs > ce) then
+    ls, cs, le, ce = le, ce, ls, cs
+  end
+  word = vim.api.nvim_buf_get_text(0, ls - 1, cs - 1, le - 1, ce, {})[1]
+  local converted = camelToSnake(word)
+  vim.api.nvim_buf_set_text(0, ls - 1, cs - 1, le - 1, ce, { converted })
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+end, { nargs = "?", complete = "dir" })
+
+vim.api.nvim_set_keymap("n", "<leader>vc", "<cmd>CamelToSnake<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>vc", "<cmd>CamelToSnake<CR>", { noremap = true, silent = true })

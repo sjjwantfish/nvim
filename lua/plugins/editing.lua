@@ -177,6 +177,7 @@ return {
         ["Select All"] = "<leader>va",
         ["Start Regex Search"] = "<leader>v/",
         ["Switch Mode"] = "<leader>v<Tab>",
+        ["Add Cursor At Pos"] = "<leader>vi",
       }
     end,
   },

@@ -17,7 +17,7 @@ require("lazy").setup({
     -- import/override with your plugins
     { import = "lazyvim.plugins.extras.lsp.none-ls" },
     { import = "lazyvim.plugins.extras.editor.dial" },
-    { import = "lazyvim.plugins.extras.editor.inc-rename" },
+    -- { import = "lazyvim.plugins.extras.editor.inc-rename" },
     { import = "lazyvim.plugins.extras.coding.neogen" },
     { import = "lazyvim.plugins.extras.test.core" },
     { import = "plugins" },

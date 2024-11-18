@@ -150,7 +150,7 @@ return {
   },
   {
     "OXY2DEV/foldtext.nvim",
-    lazy = false,
+    lazy = true,
   },
   {
     "OXY2DEV/helpview.nvim",
@@ -169,7 +169,7 @@ return {
     opts = {
       scope = {
         enabled = true,
-        show_start = true,
+        show_start = false,
         show_end = true,
         injected_languages = false,
         -- highlight = { "Function", "Label" },
