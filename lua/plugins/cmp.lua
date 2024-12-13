@@ -46,6 +46,7 @@ return {
 
       opts.sources = {
         { name = "nvim_lsp", group_index = 1 },
+        { name = "copilot", group_index = 2 },
         { name = "codeium", group_index = 2 },
         { name = "cmp_tabnine", group_index = 2 },
         { name = "snippets", group_index = 2 },
@@ -96,36 +97,6 @@ return {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replaces }),
       })
-    end,
-  },
-  {
-    "tzachar/cmp-tabnine",
-    -- enabled = false,
-    build = "./install.sh",
-    dependencies = "hrsh7th/nvim-cmp",
-    opts = {
-      max_lines = 1000,
-      max_num_results = 20,
-      sort = true,
-      run_on_every_keystroke = true,
-      snippet_placeholder = "..",
-      ignored_file_types = {
-        -- default is not to ignore
-        -- uncomment to ignore in lua:
-        -- lua = true
-      },
-      show_prediction_strength = false,
-    },
-  },
-  {
-    "Exafunction/codeium.nvim",
-    -- enabled = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require("codeium").setup({})
     end,
   },
 }
