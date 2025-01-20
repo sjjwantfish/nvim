@@ -77,11 +77,16 @@ return {
           return item
         end,
       }
+
+      local suggestion = require("copilot.suggestion")
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             -- cmp.select_next_item({ behavior = cmp.ConfirmBehavior.Insert })
             cmp.select_next_item()
+          elseif suggestion.is_visible() then
+            print("copilot suggestion")
+            suggestion.accept()
           else
             fallback()
           end
