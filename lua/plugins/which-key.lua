@@ -16,23 +16,28 @@ return {
         { "<leader>s", group = "Search" },
         { "<leader>se", "<cmd>Telescope encodings<cr>", desc = "Search encodings" },
         { "<leader>w", group = "windows" },
-        { "<leader>wh", "<cmd>wincmd H<cr>", desc = "Move window to left" },
-        { "<leader>wj", "<cmd>wincmd J<cr>", desc = "Move window to bottom" },
-        { "<leader>wk", "<cmd>wincmd K<cr>", desc = "Move window to top" },
-        { "<leader>wl", "<cmd>wincmd L<cr>", desc = "Move window to right" },
+        -- { "<leader>wh", "<cmd>wincmd H<cr>", desc = "Move window to left" },
+        -- { "<leader>wj", "<cmd>wincmd J<cr>", desc = "Move window to bottom" },
+        -- { "<leader>wk", "<cmd>wincmd K<cr>", desc = "Move window to top" },
+        -- { "<leader>wl", "<cmd>wincmd L<cr>", desc = "Move window to right" },
       })
-      wk.add( {
-          { "gp", "%", desc = "Match pair", mode = { "n", "v" } },
+      wk.add({
+        { "gp", "%", desc = "Match pair", mode = { "n", "v" } },
       })
       -- motion
       wk.add({
-        { "<A-H>", function()
-              vim.cmd("normal! 0")
-              local char = vim.api.nvim_get_current_line():sub(1, 1)
-              if char:match("%s") then
-                vim.cmd("normal! w")
-              end
-            end, desc = "Move to line head", mode = { "n", "v" } },
+        {
+          "<A-H>",
+          function()
+            vim.cmd("normal! 0")
+            local char = vim.api.nvim_get_current_line():sub(1, 1)
+            if char:match("%s") then
+              vim.cmd("normal! w")
+            end
+          end,
+          desc = "Move to line head",
+          mode = { "n", "v" },
+        },
         { "<A-L>", "$", desc = "Move to line end", mode = { "n", "v" } },
       })
       wk.add({

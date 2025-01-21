@@ -67,4 +67,14 @@ return {
       },
     },
   },
+  {
+    "sindrets/winshift.nvim",
+    keys = {
+      { "<leader>wn", mode = { "n" }, "<cmd>WinShift<cr>", desc = "Window Shift mode" },
+      { "<leader>wl", mode = { "n" }, "<cmd>WinShift right<cr>", desc = "Window Shift mode" },
+      { "<leader>wh", mode = { "n" }, "<cmd>WinShift left<cr>", desc = "Window Shift mode" },
+      { "<leader>wj", mode = { "n" }, "<cmd>WinShift down<cr>", desc = "Window Shift mode" },
+      { "<leader>wk", mode = { "n" }, "<cmd>WinShift up<cr>", desc = "Window Shift mode" },
+    },
+  },
 }
