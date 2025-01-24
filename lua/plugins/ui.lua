@@ -166,16 +166,10 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      scope = {
-        enabled = true,
-        show_start = false,
-        show_end = true,
-        injected_languages = false,
-        -- highlight = { "Function", "Label" },
-        priority = 500,
-      },
-    },
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
   },
   {
     "sphamba/smear-cursor.nvim",
