@@ -51,7 +51,13 @@ return {
         ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
         ["<C-j>"] = { "select_next" },
         ["<C-k"] = { "select_prev" },
-        ["<CR>"] = { "accept", "fallback" },
+        ["<CR>"] = {
+          function(cmp)
+            return cmp.select_and_accept()
+          end,
+          "accept",
+          "fallback",
+        },
       },
     },
   },
