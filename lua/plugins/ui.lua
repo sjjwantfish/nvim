@@ -164,15 +164,4 @@ return {
     event = "CmdlineEnter",
     opts = {},
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {},
-  },
-  {
-    "sphamba/smear-cursor.nvim",
-    opts = {},
-  },
 }
