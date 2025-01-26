@@ -25,28 +25,5 @@ return {
     "kristijanhusak/vim-dadbod-completion",
     ft = { "sql", "mysql", "plsql" },
     lazy = true,
-    init = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("dadbod-cmp", { clear = true }),
-        pattern = {
-          "sql",
-          "mysql",
-          "plsql",
-        },
-        callback = function(_)
-          require("cmp").setup.buffer({
-            sources = { { name = "vim-dadbod-completion" } },
-            formatting = {
-              fields = { "kind", "abbr", "menu" },
-              format = function(entry, item)
-                item.kind = ""
-                item.menu = "[DB]"
-                return item
-              end,
-            },
-          })
-        end,
-      })
-    end,
   },
 }
