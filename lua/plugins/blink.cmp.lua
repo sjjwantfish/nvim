@@ -6,7 +6,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    dependencies = { "fang2hou/blink-copilot", "xzbdmw/colorful-menu.nvim" },
+    dependencies = { "fang2hou/blink-copilot", "xzbdmw/colorful-menu.nvim", "moyiz/blink-emoji.nvim" },
     opts = {
       completion = {
         trigger = { show_on_keyword = true },
@@ -30,7 +30,7 @@ return {
       },
       signature = { window = { border = "single" } },
       sources = {
-        default = { "dadbod" },
+        default = { "emoji" },
         providers = {
           copilot = {
             module = "blink-copilot",
@@ -38,10 +38,16 @@ return {
               max_completions = 3,
               max_attempts = 4,
             },
+            score_offset = 8,
           },
-          dadbod = {
-            name = "dadbod",
-            module = "vim_dadbod_completion.blink",
+          lsp = {
+            score_offset = 10,
+          },
+          emoji = {
+            module = "blink-emoji",
+            name = "Emoji",
+            score_offset = 15, -- Tune by preference
+            opts = { insert = true }, -- Insert emoji (default) or complete its name
           },
         },
       },
