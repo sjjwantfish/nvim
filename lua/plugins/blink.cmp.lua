@@ -6,7 +6,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    dependencies = { "fang2hou/blink-copilot", "xzbdmw/colorful-menu.nvim", "moyiz/blink-emoji.nvim" },
+    dependencies = { "fang2hou/blink-copilot", "xzbdmw/colorful-menu.nvim" },
     opts = {
       completion = {
         trigger = { show_on_keyword = true },
@@ -30,7 +30,7 @@ return {
       },
       signature = { window = { border = "single" } },
       sources = {
-        default = { "emoji" },
+        -- default = { "emoji" },
         providers = {
           copilot = {
             module = "blink-copilot",
@@ -43,11 +43,8 @@ return {
           lsp = {
             score_offset = 10,
           },
-          emoji = {
-            module = "blink-emoji",
-            name = "Emoji",
-            score_offset = 15, -- Tune by preference
-            opts = { insert = true }, -- Insert emoji (default) or complete its name
+          dadbod = {
+            score_offset = 10,
           },
         },
       },
@@ -61,7 +58,7 @@ return {
           function(cmp)
             return cmp.select_and_accept()
           end,
-          "accept",
+          -- "accept",
           "fallback",
         },
       },
