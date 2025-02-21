@@ -10,7 +10,7 @@ return {
         adapters = {
           require("neotest-python")({
             dap = { justMyCode = false },
-            args = { "--log-level", "DEBUG" },
+            args = { "--log-level", "DEBUG", "-vs" },
             runner = "pytest",
           }),
           require("neotest-go"),
