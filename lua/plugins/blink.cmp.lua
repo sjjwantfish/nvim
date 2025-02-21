@@ -51,14 +51,29 @@ return {
       keymap = {
         preset = "default",
         ["<S-TAB>"] = { "snippet_backward", "select_prev", "fallback" },
-        ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
-        ["<C-j>"] = { "select_next" },
-        ["<C-k"] = { "select_prev" },
-        ["<CR>"] = {
+        -- ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+        ["<Tab>"] = {
           function(cmp)
-            return cmp.select_and_accept()
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_next({ auto_insert = true })
+              -- return cmp.select_and_accept()
+            end
           end,
-          -- "accept",
+          "snippet_forward",
+          "fallback",
+        },
+
+        ["<C-j>"] = { "select_next" },
+        ["<C-k>"] = { "select_prev" },
+        ["<CR>"] = {
+          -- function(cmp)
+          --   if cmp.snippet_active() then
+          --     return cmp.select_and_accept()
+          --   end
+          -- end,
+          "accept",
           "fallback",
         },
       },
