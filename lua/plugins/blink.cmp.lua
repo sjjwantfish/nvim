@@ -1,12 +1,12 @@
 return {
   { import = "lazyvim.plugins.extras.ai.copilot" },
-  {
-    "giuxtaposition/blink-cmp-copilot",
-    enabled = false,
-  },
+  -- {
+  --   "giuxtaposition/blink-cmp-copilot",
+  --   enabled = false,
+  -- },
   {
     "saghen/blink.cmp",
-    dependencies = { "fang2hou/blink-copilot", "xzbdmw/colorful-menu.nvim" },
+    dependencies = { "xzbdmw/colorful-menu.nvim" },
     opts = {
       completion = {
         trigger = { show_on_keyword = true },
@@ -32,14 +32,14 @@ return {
       sources = {
         -- default = { "emoji" },
         providers = {
-          copilot = {
-            module = "blink-copilot",
-            opts = {
-              max_completions = 3,
-              max_attempts = 4,
-            },
-            score_offset = 8,
-          },
+          -- copilot = {
+          --   module = "blink-copilot",
+          --   opts = {
+          --     max_completions = 3,
+          --     max_attempts = 4,
+          --   },
+          --   score_offset = 8,
+          -- },
           lsp = {
             score_offset = 10,
           },
@@ -51,7 +51,6 @@ return {
       keymap = {
         preset = "default",
         ["<S-TAB>"] = { "snippet_backward", "select_prev", "fallback" },
-        -- ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
         ["<Tab>"] = {
           function(cmp)
             if cmp.snippet_active() then
@@ -76,6 +75,30 @@ return {
           "accept",
           "fallback",
         },
+      },
+    },
+  },
+
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    event = "BufReadPost",
+    opts = {
+      suggestion = {
+        enabled = not vim.g.ai_cmp,
+        auto_trigger = true,
+        hide_during_completion = vim.g.ai_cmp,
+        keymap = {
+          accept = "<TAB>", -- handled by nvim-cmp / blink.cmp
+          next = "<M-]>",
+          prev = "<M-[>",
+        },
+      },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
       },
     },
   },
