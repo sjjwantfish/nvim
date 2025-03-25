@@ -10,28 +10,27 @@ return {
       -- vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorInactive", { fg = "none" })
       -- vim.api.nvim_set_hl(0, "MyNeoTreeTabSeparatorActive", { fg = "none" })
 
-      local function on_move(data)
-        Snacks.rename.on_rename_file(data.source, data.destination)
-      end
-      local events = require("neo-tree.events")
+      -- local function on_move(data)
+      --   Snacks.rename.on_rename_file(data.source, data.destination)
+      -- end
+      -- local events = require("neo-tree.events")
       local opts = {
-        auto_clean_after_session_restore = true,
+        -- auto_clean_after_session_restore = true,
         close_if_last_window = true,
         sources = { "filesystem", "buffers", "git_status" },
-        source_selector = {
-          winbar = true,
-          content_layout = "center",
-
-          highlight_tab = "MyNeoTreeTabInactive",
-          highlight_tab_active = "MyNeoTreeTabActive",
-          highlight_background = "MyNeoTreeTabInactive",
-          highlight_separator = "MyNeoTreeTabSeparatorInactive",
-          highlight_separator_active = "MyNeoTreeTabSeparatorActive",
-        },
+        -- source_selector = {
+        --   winbar = true,
+        --   content_layout = "center",
+        --   highlight_tab = "MyNeoTreeTabInactive",
+        --   highlight_tab_active = "MyNeoTreeTabActive",
+        --   highlight_background = "MyNeoTreeTabInactive",
+        --   highlight_separator = "MyNeoTreeTabSeparatorInactive",
+        --   highlight_separator_active = "MyNeoTreeTabSeparatorActive",
+        -- },
         commands = {
-          system_open = function(state)
-            (vim.ui.open)(state.tree:get_node():get_id())
-          end,
+          -- system_open = function(state)
+          --   (vim.ui.open)(state.tree:get_node():get_id())
+          -- end,
           parent_or_close = function(state)
             local node = state.tree:get_node()
             if (node.type == "directory" or node:has_children()) and node:is_expanded() then
@@ -40,18 +39,18 @@ return {
               require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
             end
           end,
-          child_or_open = function(state)
-            local node = state.tree:get_node()
-            if node.type == "directory" or node:has_children() then
-              if not node:is_expanded() then -- if unexpanded, expand
-                state.commands.toggle_node(state)
-              else -- if expanded and has children, seleect the next child
-                require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
-              end
-            else -- if not a directory just open it
-              state.commands.open(state)
-            end
-          end,
+          -- child_or_open = function(state)
+          --   local node = state.tree:get_node()
+          --   if node.type == "directory" or node:has_children() then
+          --     if not node:is_expanded() then -- if unexpanded, expand
+          --       state.commands.toggle_node(state)
+          --     else -- if expanded and has children, seleect the next child
+          --       require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+          --     end
+          --   else -- if not a directory just open it
+          --     state.commands.open(state)
+          --   end
+          -- end,
           copy_selector = function(state)
             local node = state.tree:get_node()
             local filepath = node:get_id()
@@ -64,7 +63,7 @@ return {
               ["FILENAME"] = filename,
               ["PATH (CWD)"] = modify(filepath, ":."),
               ["PATH (HOME)"] = modify(filepath, ":~"),
-              ["PATH"] = filepath,
+              ["PATH (ABS)"] = filepath,
               ["URI"] = vim.uri_from_fname(filepath),
             }
 
@@ -92,79 +91,93 @@ return {
           find_in_dir = function(state)
             local node = state.tree:get_node()
             local path = node:get_id()
-            require("telescope.builtin").find_files({
-              cwd = node.type == "directory" and path or vim.fn.fnamemodify(path, ":h"),
-            })
+            local opt = {}
+            if node.type == "directory" then
+              opt = {
+                cwd = path,
+                prompt_title = "Find files in " .. vim.fn.fnamemodify(path, ":~:."),
+              }
+            else
+              opt = { cwd = vim.fn.fnamemodify(path, ":h") }
+            end
+            require("telescope.builtin").find_files(opt)
           end,
           live_grep_in_dir = function(state)
             local node = state.tree:get_node()
             local path = node:get_id()
-            require("telescope").extensions.live_grep_args.live_grep_args({
-              cwd = node.type == "directory" and path or vim.fn.fnamemodify(path, ":h"),
-            })
+            local opt = {}
+            if node.type == "directory" then
+              opt = {
+                cwd = path,
+                prompt_title = "Live grep in " .. vim.fn.fnamemodify(path, ":~:."),
+              }
+            else
+              opt = { cwd = vim.fn.fnamemodify(path, ":h") }
+            end
+            require("telescope").extensions.live_grep_args.live_grep_args(opt)
           end,
         },
         window = {
           auto_expand_width = true,
           width = 30,
           mappings = {
-            ["<space>"] = false, -- disable space until we figure out which-key disabling
+            -- ["<space>"] = false, -- disable space until we figure out which-key disabling
             ["<a-h>"] = "prev_source",
             ["<a-l>"] = "next_source",
-            ["<leader>space"] = "find_in_dir",
+            ["<leader><leader>"] = "find_in_dir",
             ["<leader>p"] = "live_grep_in_dir",
-            O = "system_open",
+            -- O = "system_open",
             Y = "copy_selector",
             h = "parent_or_close",
-            l = "child_or_open",
-            o = "open",
+            -- l = "child_or_open",
+            -- o = "open",
             z = "none",
             ["/"] = "none",
           },
-          fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
-            ["<C-j>"] = "move_cursor_down",
-            ["<C-k>"] = "move_cursor_up",
-          },
+          -- fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
+          --   ["<C-j>"] = "move_cursor_down",
+          --   ["<C-k>"] = "move_cursor_up",
+          -- },
         },
         filesystem = {
-          find_by_full_path_words = true,
+          -- find_by_full_path_words = true,
           follow_current_file = { enabled = true },
-          hijack_netrw_behavior = "open_current",
-          use_libuv_file_watcher = true,
+          -- hijack_netrw_behavior = "open_current",
+          -- use_libuv_file_watcher = true,
           filtered_items = {
-            hide_hidden = false,
-            hide_dotfiles = false,
-            hide_gitignored = true,
-            hide_by_pattern = { -- uses glob style patterns
-              --"*.meta",
-              --"*/src/*/tsconfig.json",
-            },
+            -- hide_hidden = false,
+            -- hide_dotfiles = false,
+            -- hide_gitignored = true,
+            -- hide_by_pattern = { -- uses glob style patterns
+            --   --"*.meta",
+            --   --"*/src/*/tsconfig.json",
+            -- },
             always_show = { -- remains visible even if other settings would normally hide it
               ".gitignored",
               "config.yaml",
               "config.lua",
             },
-            never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-              --".DS_Store",
-              -- "thumbs.db",
-            },
-            never_show_by_pattern = { -- uses glob style patterns
-              "__pycache__",
-              "*.pyc",
-              ".pytest_cache",
-            },
+            -- never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
+            --   --".DS_Store",
+            --   -- "thumbs.db",
+            -- },
+            -- never_show_by_pattern = { -- uses glob style patterns
+            --   "__pycache__",
+            --   "*.pyc",
+            --   ".pytest_cache",
+            -- },
           },
         },
-        event_handlers = {
-          {
-            event = "neo_tree_buffer_enter",
-            handler = function(_)
-              vim.opt_local.signcolumn = "auto"
-            end,
-          },
-          { event = events.FILE_MOVED, handler = on_move },
-          { event = events.FILE_RENAMED, handler = on_move },
-        },
+        -- event_handlers = {
+        --   {
+        --     event = "neo_tree_buffer_enter",
+        --     handler = function(_)
+        --       vim.opt_local.signcolumn = "auto"
+        --     end,
+        --   },
+        --   { event = events.FILE_MOVED, handler = on_move },
+        --   { event = events.FILE_RENAMED, handler = on_move },
+        -- },
       }
       require("neo-tree").setup(opts)
     end,
