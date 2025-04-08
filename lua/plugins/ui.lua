@@ -27,6 +27,7 @@ return {
     event = "VeryLazy",
     opts = {
       sections = {
+        lualine_c = { { "filename", path = 1, newfile_status = true, file_stauts = true } },
         lualine_z = {
           "encoding",
         },

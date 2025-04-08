@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({ "BufReadPre", "BufRead" }, {
   group = groovy_augroup,
   pattern = {
-    -- "*enkinsfile*",
+    "*enkinsfile*",
     "*roovy",
   },
   callback = set_groovy_ft,
