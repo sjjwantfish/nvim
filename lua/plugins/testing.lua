@@ -2,17 +2,17 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
-      "nvim-neotest/neotest-python",
+      -- "nvim-neotest/neotest-python",
       "nvim-neotest/neotest-go",
     },
     config = function()
       require("neotest").setup({
         adapters = {
-          require("neotest-python")({
-            dap = { justMyCode = false },
-            args = { "--log-level", "DEBUG", "-vs" },
-            runner = "pytest",
-          }),
+          -- require("neotest-python")({
+          --   dap = { justMyCode = false },
+          --   args = { "--log-level", "DEBUG", "-vs" },
+          --   runner = "pytest",
+          -- }),
           require("neotest-go"),
         },
       })

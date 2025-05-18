@@ -86,10 +86,13 @@ return {
   },
   {
     "chrisgrieser/nvim-origami",
+    dependencies = {
+      "kevinhwang91/nvim-ufo",
+    },
     -- enabled = false,
     event = "BufReadPost", -- later or on keypress would prevent saving folds
     opts = {
-      keepFoldsAcrossSessions = true,
+      keepFoldsAcrossSessions = package.loaded["ufo"] ~= nil,
       pauseFoldsOnSearch = false,
       setupFoldKeymaps = false,
     }, -- needed even when using default config
