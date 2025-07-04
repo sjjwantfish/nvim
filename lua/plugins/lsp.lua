@@ -25,9 +25,6 @@ return {
         -- "eslint_d",
         -- "prettier",
         "eslint-lsp",
-        -- buf
-        "buf-language-server",
-        "buf",
         -- sql
         "sql-formatter",
       },
@@ -73,29 +70,6 @@ return {
             },
           },
         },
-        -- eslint = {
-        --   codeAction = {
-        --     -- disableRuleComment = {
-        --     --   enable = true,
-        --     --   location = "separateLine"
-        --     -- },
-        --     showDocumentation = {
-        --       enable = true,
-        --     },
-        --   },
-        --   -- workingDirectory = {
-        --   --   mode = "location",
-        --   -- },
-        -- },
-        -- vuels = {},
-        -- volar = {
-        --   init_options = {
-        --     vue = {
-        --       hybridMode = false,
-        --     },
-        --   },
-        -- },
-        -- gopls = {},
       },
     },
     init = function()
