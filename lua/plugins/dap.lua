@@ -61,6 +61,10 @@ return {
         args = {},
         build_flags = "",
       },
+      tests = {
+        -- enables verbosity when running the test.
+        verbose = true,
+      },
     },
   },
   {

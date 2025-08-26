@@ -75,7 +75,7 @@ return {
     },
     keys = {
       {
-        "<leader>cc",
+        "<leader>ii",
         mode = { "n", "v" },
         function()
           require("nvim-toggler").toggle()
@@ -119,6 +119,14 @@ return {
         ["Start Regex Search"] = "<leader>v/",
         ["Switch Mode"] = "<leader>v<Tab>",
         ["Add Cursor At Pos"] = "<leader>vi",
+        -- ["I BS"] = "",
+        -- ["Goto Next"] = "]v",
+        -- ["Goto Prev"] = "[v",
+        -- ["I CtrlB"] = "<M-b>",
+        -- ["I CtrlF"] = "<M-f>",
+        ["I Return"] = "<S-CR>",
+        -- ["I Down Arrow"] = "",
+        -- ["I Up Arrow"] = "",
       }
     end,
   },

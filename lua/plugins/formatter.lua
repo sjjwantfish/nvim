@@ -21,8 +21,9 @@ return {
         go = { "golines", "gofumpt", "goimports" },
         -- javascript = { { "eslint", stop_after_first = true } },
         -- vue = { { "eslint", stop_after_first = true } },
-        javascript = { "eslint" },
-        vue = { "eslint" },
+        javascript = { "eslint_d" },
+        vue = { "eslint_d" },
+        ts = { "eslint_d" },
         sql = { "sql_formatter" },
       },
       formatters = {
@@ -53,6 +54,10 @@ return {
             "--base-formatter=gofumpt",
             "--max-len=100",
           },
+        },
+        prettier = {
+          inherit = true,
+          -- args = { "--single-quote", "--trailing-comma=es5", "--print-width=100" },
         },
       },
     },
