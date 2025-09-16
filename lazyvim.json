@@ -3,7 +3,9 @@
     "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.ai.copilot-chat",
     "lazyvim.plugins.extras.coding.luasnip",
+    "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.editor.dial",
+    "lazyvim.plugins.extras.lang.go",
     "lazyvim.plugins.extras.lang.helm",
     "lazyvim.plugins.extras.lang.python",
     "lazyvim.plugins.extras.lang.sql",
@@ -11,6 +13,7 @@
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.vue",
     "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.ui.indent-blankline"
   ],
   "install_version": 7,

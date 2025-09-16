@@ -58,7 +58,6 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
-  { "Ttibsi/pre-commit.nvim" },
   {
     "josephburgess/nvumi",
     dependencies = { "folke/snacks.nvim" },
